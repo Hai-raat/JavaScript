@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Task 5</title>
+</head>
+<body>
+  <script>
+    const numbers = [];
+
+    while (true) {
+      const input = prompt("Enter a number (duplicate to stop):");
+      if (input === null) break;
+
+      const num = Number(input);
+
+      if (Number.isNaN(num)) {
+        alert("Please enter a valid number.");
+        continue;
+      }
+
+      if (numbers.includes(num)) {
+        alert(`The number ${num} has already been given. Stopping.`);
+        break;
+      }
+
+      numbers.push(num);
+    }
+
+    numbers.sort((a, b) => a - b);
+
+    console.log("Numbers in ascending order:", numbers);
+  </script>
+</body>
+</html>

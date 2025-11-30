@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  const numbers = [];
+
+  while (true) {
+    const input = prompt("Enter a number (0 to stop):");
+    const num = Number(input);
+
+    if (num === 0) {
+      break;
+    }
+
+    if (!Number.isNaN(num)) {
+      numbers.push(num);
+    }
+  }
+  numbers.sort((a, b) => a - b).reverse();
+
+  console.log("Numbers from largest to smallest:");
+  console.log(numbers);
+</script>
+
+</body>
+</html>
