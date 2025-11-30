@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TVMaze Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 1rem auto;
+    }
+    form {
+      margin-bottom: 1rem;
+    }
+    article {
+      border: 1px solid #ccc;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    img {
+      display: block;
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>TV series search</h1>
+
+  <form id="search-form">
+    <input id="query" type="text" placeholder="Enter TV show" />
+    <input type="submit" value="Search" />
+  </form>
+
+
+  <div id="results"></div>
+
+  <script>
+    const form = document.getElementById("search-form");
+    const queryInput = document.getElementById("query");
+    const resultsDiv = document.getElementById("results");
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const valueFromInput = queryInput.value.trim();
+      if (!valueFromInput) return;
+
+      const url = `https://api.tvmaze.com/search/shows?q=${encodeURIComponent(
+        valueFromInput
+      )}`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        console.log("Search result:", data);
+
+        resultsDiv.innerHTML = "";
+
+        if (data.length === 0) {
+          resultsDiv.innerHTML = "<p>No results found.</p>";
+          return;
+        }
+        data.forEach(result => {
+          const tvShow = result.show;
+
+          const article = document.createElement("article");
+
+          const title = document.createElement("h2");
+          title.textContent = tvShow.name;
+          article.appendChild(title);
+
+          const link = document.createElement("a");
+          link.href = tvShow.url;
+          link.target = "_blank";
+          link.textContent = "Show details";
+          article.appendChild(link);
+
+ const imageUrl = tvShow.image?.medium;
+          if (imageUrl) {
+            const img = document.createElement("img");
+            img.src = imageUrl;
+            img.alt = tvShow.name;
+            article.appendChild(img);
+          }
+const summaryDiv = document.createElement("div");
+          summaryDiv.innerHTML = tvShow.summary || "No summary available.";
+          article.appendChild(summaryDiv);
+
+          resultsDiv.appendChild(article);
+        });
+      } catch (error) {
+        console.error("Error:", error);
+        resultsDiv.innerHTML = "<p>Something went wrong.</p>";
+      }
+    });
+  </script>
+</body>
+</html>
