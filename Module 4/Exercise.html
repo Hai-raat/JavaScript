@@ -3,25 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <title>TVMaze Search</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 1rem auto;
-    }
-    form {
-      margin-bottom: 1rem;
-    }
-    article {
-      border: 1px solid #ccc;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-    }
-    img {
-      display: block;
-      margin: 0.5rem 0;
-    }
-  </style>
 </head>
 <body>
   <h1>TV series search</h1>
@@ -30,7 +11,6 @@
     <input id="query" type="text" placeholder="Enter TV show" />
     <input type="submit" value="Search" />
   </form>
-
 
   <div id="results"></div>
 
@@ -41,21 +21,18 @@
 
     form.addEventListener("submit", async function (event) {
       event.preventDefault();
-
-      const valueFromInput = queryInput.value.trim();
+        const valueFromInput = queryInput.value.trim();
       if (!valueFromInput) return;
-
-      const url = `https://api.tvmaze.com/search/shows?q=${encodeURIComponent(
+        const url = `https://api.tvmaze.com/search/shows?q=${encodeURIComponent(
         valueFromInput
       )}`;
-
-      try {
+        try {
         const response = await fetch(url);
         const data = await response.json();
 
         console.log("Search result:", data);
 
-        resultsDiv.innerHTML = "";
+     resultsDiv.innerHTML = "";
 
         if (data.length === 0) {
           resultsDiv.innerHTML = "<p>No results found.</p>";
