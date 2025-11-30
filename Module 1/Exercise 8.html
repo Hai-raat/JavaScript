@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 8</title>
+</head>
+<body>
+  <h1>Leap Years in Interval</h1>
+
+  <script>
+    const startYear = Number(prompt("Enter start year:"));
+    const endYear = Number(prompt("Enter end year:"));
+
+    const ul = document.createElement("ul");
+
+    for (let year = startYear; year <= endYear; year++) {
+      const isLeap =
+        (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+
+      if (isLeap) {
+        const li = document.createElement("li");
+        li.innerText = year;
+        ul.appendChild(li);
+      }
+    }
+
+    document.body.appendChild(ul);
+  </script>
+</body>
+</html>

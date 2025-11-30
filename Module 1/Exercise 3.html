@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 3</title>
+</head>
+<body>
+  <h1>Three Numbers</h1>
+  <p id="result"></p>
+
+  <script>
+    const a = Number(prompt("Enter first integer:"));
+    const b = Number(prompt("Enter second integer:"));
+    const c = Number(prompt("Enter third integer:"));
+
+    const sum = a + b + c;
+    const product = a * b * c;
+    const average = sum / 3;
+
+    const resultText =
+      `Sum: ${sum}, Product: ${product}, Average: ${average}`;
+
+    document.getElementById("result").innerText = resultText;
+  </script>
+</body>
+</html>
